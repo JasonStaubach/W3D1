@@ -13,6 +13,15 @@ class Array
         end 
     end 
 
+    
+    def my_select(&prc)
+        select_arr = []
+        self.my_each() do |i|
+            select_arr << i if prc.call(i)
+        end
+        select_arr
+    end
+
 
     
     return_value = [1, 2, 3].my_each do |num|
