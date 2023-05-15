@@ -61,7 +61,7 @@ class Array
             miniArr = []
             
             miniArr << self[i]
-            (args[0].length - 1).times do |j|
+            (self.length - 1).times do |j|
                 miniArr << args[j][i]
             end
             res << miniArr 
@@ -70,18 +70,44 @@ class Array
         res 
     end 
 
-    a = [ 4, 5, 6 ]
-    b = [ 7, 8, 9 ]
-    p [1, 2, 3].my_zip(a, b) # => [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-    p a.my_zip([1,2], [8])   # => [[4, 1, 8], [5, 2, nil], [6, nil, nil]]
-    p [1, 2].my_zip(a, b)    # => [[1, 4, 7], [2, 5, 8]]
-    
-    c = [10, 11, 12]
-    d = [13, 14, 15]
-    [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
+    def my_rotate(num=1)
+        res = []
+        fin_arr = Array.new(self.length)
+        (0...self.length).each do |i|
+            res << (i + num) % self.length 
+        
+        end
+        
+        (0...self.length).each do |j|
+            fin_arr[self[res[j]]] << self[j]
+        end 
+
+
+        fin_arr
+    end 
+
+        
+
+    def my_join(sep="")
+        res = ""
+        self.each do |i|
+            res+= i 
+            res+= sep
+        end 
+        res 
+    end 
 
 
 
+    def my_reverse
+        res = []
 
+        length = self.length
+        while length > 0
+            res << self[length-1]
+            length -=1 
+        end
+        res 
+    end 
 
 end 
